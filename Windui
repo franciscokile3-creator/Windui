@@ -1,0 +1,102 @@
+-- WindUI Loader (sightseeing76 scripts with Survivor + Killers)
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+
+-- Setup theme
+WindUI.TransparencyValue = 0.2
+WindUI:SetTheme("Dark")
+
+-- Create main window
+local Window = WindUI:CreateWindow({
+    Title = "sightseeing76 scripts",
+    Icon = "swords",
+    Author = "by FrancisCruz",
+    Folder = "sightseeing76",
+    Size = UDim2.fromOffset(500, 400),
+    Theme = "Dark",
+    User = {
+        Enabled = true,
+        Anonymous = true,
+    },
+    SideBarWidth = 180,
+})
+
+-- Tags
+Window:Tag({
+    Title = "Forsaken",
+    Color = Color3.fromHex("#30ff6a")
+})
+Window:Tag({
+    Title = "v1.0",
+    Color = Color3.fromHex("#315dff")
+})
+
+-- Sections
+local Sections = {
+    Survivor = Window:Section({ Title = "Survivor", Opened = true }),
+    Killers  = Window:Section({ Title = "Killers", Opened = true })
+}
+
+-- Tabs inside sections
+local SurvivorTab = Sections.Survivor:Tab({ Title = "Main", Icon = "user" })
+local KillersTab  = Sections.Killers:Tab({ Title = "Main", Icon = "skull" })
+
+-- Survivor Tab content (buttons in order)
+SurvivorTab:Button({
+    Title = "Auto Zap Survivor",
+    Icon = "zap",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/franciscokile3-creator/Dusk/refs/heads/main/Dusk"))()
+    end
+})
+
+SurvivorTab:Button({
+    Title = "Nol hub",
+    Icon = "grid",
+    Callback = function()
+        getfenv().ADittoKey = "NOL_FRERKEY"
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Syndromehsh/NOL/refs/heads/main/Nolsaken"))()
+    end
+})
+
+SurvivorTab:Button({
+    Title = "Chance Aimbot",
+    Icon = "crosshair",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/franciscokile3-creator/Chance-/refs/heads/main/Chance"))()
+    end
+})
+
+SurvivorTab:Button({
+    Title = "Shedletsky",
+    Icon = "star",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/franciscokile3-creator/Shedletsky-/refs/heads/main/Shedletsky%20script"))()
+    end
+})
+
+SurvivorTab:Button({
+    Title = "Elliot",
+    Icon = "user-check",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/franciscokile3-creator/Elliot/refs/heads/main/Elliot"))()
+    end
+})
+
+-- Killers Tab content
+KillersTab:Button({
+    Title = "Noli Nova",
+    Icon = "zap",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/franciscokile3-creator/Noli-nova/refs/heads/main/Noli%20nova"))()
+    end
+})
+
+-- Theme Switcher Button (top-right)
+Window:CreateTopbarButton("theme-switcher", "moon", function()
+    WindUI:SetTheme(WindUI:GetCurrentTheme() == "Dark" and "Light" or "Dark")
+    WindUI:Notify({
+        Title = "Theme Changed",
+        Content = "Current theme: "..WindUI:GetCurrentTheme(),
+        Duration = 2
+    })
+end, 999)
