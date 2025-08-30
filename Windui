@@ -1,47 +1,32 @@
--- WindUI Loader (sightseeing76 scripts with Survivor + Killers)
+-- WindUI Loader
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
--- Setup theme
-WindUI.TransparencyValue = 0.2
-WindUI:SetTheme("Dark")
-
--- Create main window
+-- Create Main Window
 local Window = WindUI:CreateWindow({
-    Title = "sightseeing76 scripts",
-    Icon = "swords",
-    Author = "by FrancisCruz",
-    Folder = "sightseeing76",
-    Size = UDim2.fromOffset(500, 400),
-    Theme = "Dark",
-    User = {
-        Enabled = true,
-        Anonymous = true,
-    },
-    SideBarWidth = 180,
-})
-
--- Tags
-Window:Tag({
     Title = "Forsaken",
-    Color = Color3.fromHex("#30ff6a")
+    Icon = "door-open",
+    Author = "Sightseeing76's",
+    Folder = "Forsaken_Scripts",
+    Size = UDim2.fromOffset(600, 450),
+    Theme = "Dark",
+    SideBarWidth = 200
 })
-Window:Tag({
-    Title = "v1.0",
-    Color = Color3.fromHex("#315dff")
+
+-- Create Survivor Tab
+local SurvivorTab = Window:Tab({
+    Title = "Survivor",
+    Icon = "user",
+    Locked = false
 })
 
--- Sections
-local Sections = {
-    Survivor = Window:Section({ Title = "Survivor", Opened = true }),
-    Killers  = Window:Section({ Title = "Killers", Opened = true })
-}
+-- Survivor Section
+local SurvivorSection = SurvivorTab:Section({
+    Title = "Survivor Scripts",
+    Icon = "zap",
+    Opened = true
+})
 
--- Tabs inside sections
-local SurvivorTab = Sections.Survivor:Tab({ Title = "Main", Icon = "user" })
-local KillersTab  = Sections.Killers:Tab({ Title = "Main", Icon = "skull" })
-
--- Survivor Tab content (buttons in order)
-SurvivorTab:Button({
+SurvivorSection:Button({
     Title = "Auto Zap Survivor",
     Icon = "zap",
     Callback = function()
@@ -49,16 +34,16 @@ SurvivorTab:Button({
     end
 })
 
-SurvivorTab:Button({
+SurvivorSection:Button({
     Title = "Nol hub",
-    Icon = "grid",
+    Icon = "layers",
     Callback = function()
         getfenv().ADittoKey = "NOL_FRERKEY"
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Syndromehsh/NOL/refs/heads/main/Nolsaken"))()
     end
 })
 
-SurvivorTab:Button({
+SurvivorSection:Button({
     Title = "Chance Aimbot",
     Icon = "crosshair",
     Callback = function()
@@ -66,15 +51,15 @@ SurvivorTab:Button({
     end
 })
 
-SurvivorTab:Button({
+SurvivorSection:Button({
     Title = "Shedletsky",
-    Icon = "star",
+    Icon = "user",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/franciscokile3-creator/Shedletsky-/refs/heads/main/Shedletsky%20script"))()
     end
 })
 
-SurvivorTab:Button({
+SurvivorSection:Button({
     Title = "Elliot",
     Icon = "user-check",
     Callback = function()
@@ -82,16 +67,29 @@ SurvivorTab:Button({
     end
 })
 
--- Killers Tab content
-KillersTab:Button({
-    Title = "Noli Nova",
-    Icon = "zap",
+-- Create Killers Tab
+local KillersTab = Window:Tab({
+    Title = "Killers",
+    Icon = "skull",
+    Locked = false
+})
+
+-- Killers Section
+local KillersSection = KillersTab:Section({
+    Title = "Killer Scripts",
+    Icon = "skull",
+    Opened = true
+})
+
+KillersSection:Button({
+    Title = "Noli nova",
+    Icon = "skull",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/franciscokile3-creator/Noli-nova/refs/heads/main/Noli%20nova"))()
     end
 })
 
--- Theme Switcher Button (top-right)
+-- Optional Theme Switcher Topbar Button
 Window:CreateTopbarButton("theme-switcher", "moon", function()
     WindUI:SetTheme(WindUI:GetCurrentTheme() == "Dark" and "Light" or "Dark")
     WindUI:Notify({
